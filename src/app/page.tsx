@@ -1413,7 +1413,7 @@ function Footer() {
             className="text-base max-w-md mx-auto"
             style={{ color: "#6b7280", fontFamily: "var(--font-outfit)", lineHeight: 1.7 }}
           >
-            The Farcaster Agent Launchpad. Turnkey infrastructure for deploying
+            Turnkey infrastructure for deploying
             AI agents with identity, payments, and data built-in.
           </p>
         </div>
