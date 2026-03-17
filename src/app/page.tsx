@@ -129,7 +129,7 @@ function CodeBlock({ code, header }: CodeBlockProps) {
         />
         <button
           onClick={handleCopy}
-          className="absolute top-3 right-3 text-xs px-2.5 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity"
+          className="absolute top-3 right-3 text-xs px-2.5 py-1 rounded sm:opacity-0 sm:group-hover:opacity-100 transition-opacity"
           style={{
             background: "rgba(31,41,55,0.9)",
             border: "1px solid #374151",
@@ -521,12 +521,12 @@ function Hero() {
           }}
         >
           <div
-            className="flex items-center gap-2 px-4 py-2.5 rounded-lg"
+            className="flex items-center gap-2 px-3 sm:px-4 py-2.5 rounded-lg"
             style={{
               background: "rgba(13,17,23,0.8)",
               border: "1px solid #1f2937",
               fontFamily: "var(--font-ibm-plex-mono)",
-              fontSize: "13px",
+              fontSize: "12px",
             }}
           >
             <span style={{ color: "#6b7280" }}>$</span>
@@ -537,7 +537,7 @@ function Hero() {
 
         {/* Stats row */}
         <div
-          className="flex flex-wrap justify-center gap-8 mt-16 animate-fade-up"
+          className="flex flex-wrap justify-center gap-4 sm:gap-8 mt-12 sm:mt-16 animate-fade-up"
           style={{
             animationDelay: "0.65s",
             opacity: 0,
@@ -619,7 +619,7 @@ function HowItWorks() {
   ];
 
   return (
-    <section id="how-it-works" style={{ padding: "96px 0 80px" }}>
+    <section id="how-it-works" className="pt-12 pb-12 sm:pt-20 sm:pb-16 lg:pt-24 lg:pb-20">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Header */}
         <div className="text-center mb-16 reveal">
@@ -645,9 +645,9 @@ function HowItWorks() {
         <div className="max-w-2xl mx-auto">
           {steps.map((step, i) => (
             <div key={step.number} className={`reveal reveal-delay-${i + 1}`}>
-              <div className="flex gap-6">
+              <div className="flex gap-3 sm:gap-6">
                 {/* Left: number + connector */}
-                <div className="flex flex-col items-center" style={{ minWidth: "48px" }}>
+                <div className="flex flex-col items-center flex-shrink-0" style={{ minWidth: "40px" }}>
                   <div
                     className="w-12 h-12 rounded-xl flex items-center justify-center text-xl font-bold flex-shrink-0"
                     style={{
@@ -691,16 +691,16 @@ function HowItWorks() {
                     {step.description}
                   </p>
                   <div
-                    className="inline-flex items-center px-3 py-1.5 rounded-md"
+                    className="inline-flex items-center px-2 sm:px-3 py-1.5 rounded-md max-w-full overflow-x-auto"
                     style={{
                       background: "rgba(13,17,23,0.8)",
                       border: "1px solid #1f2937",
                       fontFamily: "var(--font-ibm-plex-mono)",
-                      fontSize: "12px",
+                      fontSize: "11px",
                       color: step.color,
                     }}
                   >
-                    {step.detail}
+                    <span className="whitespace-nowrap">{step.detail}</span>
                   </div>
                 </div>
               </div>
@@ -856,7 +856,7 @@ await agent.start(); // MCP at :3000, x402 enabled`,
   ];
 
   return (
-    <section id="packages" style={{ padding: "80px 0", background: "rgba(17,24,39,0.3)" }}>
+    <section id="packages" className="py-12 sm:py-20" style={{ background: "rgba(17,24,39,0.3)" }}>
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Header */}
         <div className="text-center mb-16 reveal">
@@ -1024,7 +1024,7 @@ function QuickStart() {
   const [tab, setTab] = useState<"server" | "client" | "register">("server");
 
   return (
-    <section id="quick-start" style={{ padding: "80px 0" }}>
+    <section id="quick-start" className="py-12 sm:py-20">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Header */}
         <div className="text-center mb-16 reveal">
@@ -1048,13 +1048,13 @@ function QuickStart() {
         {/* Install */}
         <div className="max-w-2xl mx-auto mb-8 reveal">
           <div
-            className="rounded-xl p-4"
+            className="rounded-xl p-3 sm:p-4 overflow-x-auto"
             style={{ background: "rgba(13,17,23,0.8)", border: "1px solid #1f2937" }}
           >
             <div className="text-xs mb-2" style={{ color: "#4b5563", fontFamily: "var(--font-outfit)" }}>
               Install
             </div>
-            <div style={{ fontFamily: "var(--font-ibm-plex-mono)", fontSize: "13px" }}>
+            <div className="whitespace-nowrap" style={{ fontFamily: "var(--font-ibm-plex-mono)", fontSize: "12px" }}>
               <span style={{ color: "#6b7280" }}>$ </span>
               <span style={{ color: "#c3e88d" }}>npm install </span>
               <span style={{ color: "#89ddff" }}>
@@ -1068,7 +1068,7 @@ function QuickStart() {
         <div className="max-w-3xl mx-auto reveal">
           {/* Tab bar */}
           <div
-            className="flex gap-1 p-1 rounded-xl mb-3 w-fit"
+            className="flex gap-1 p-1 rounded-xl mb-3 w-full sm:w-fit overflow-x-auto"
             style={{ background: "rgba(17,24,39,0.8)", border: "1px solid #1f2937" }}
           >
             {(
@@ -1081,7 +1081,7 @@ function QuickStart() {
               <button
                 key={t.id}
                 onClick={() => setTab(t.id)}
-                className="px-4 py-2 rounded-lg text-sm font-medium transition-all"
+                className="px-2.5 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-medium transition-all whitespace-nowrap"
                 style={{
                   background: tab === t.id ? "rgba(251,191,36,0.12)" : "transparent",
                   color: tab === t.id ? "#fbbf24" : "#6b7280",
@@ -1123,7 +1123,8 @@ function Architecture() {
   return (
     <section
       id="architecture"
-      style={{ padding: "80px 0", background: "rgba(17,24,39,0.2)" }}
+      className="py-12 sm:py-20"
+      style={{ background: "rgba(17,24,39,0.2)" }}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Header */}
@@ -1227,7 +1228,7 @@ function Architecture() {
                 Protocol Versions
               </h3>
               <div
-                className="rounded-xl overflow-hidden"
+                className="rounded-xl overflow-x-auto"
                 style={{ border: "1px solid rgba(31,41,55,0.8)" }}
               >
                 <table className="proto-table">
@@ -1235,24 +1236,24 @@ function Architecture() {
                     <tr>
                       <th className="text-left">Protocol</th>
                       <th className="text-left">Version</th>
-                      <th className="text-left">Package</th>
+                      <th className="text-left whitespace-nowrap">Package</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td style={{ color: "#34d399", fontFamily: "var(--font-ibm-plex-mono)", fontSize: "13px" }}>x402</td>
-                      <td style={{ color: "#9ca3af", fontFamily: "var(--font-outfit)", fontSize: "13px" }}>v2 (CAIP-2)</td>
-                      <td style={{ color: "#6b7280", fontFamily: "var(--font-ibm-plex-mono)", fontSize: "12px" }}>@x402/fetch + @x402/evm</td>
+                      <td className="whitespace-nowrap" style={{ color: "#34d399", fontFamily: "var(--font-ibm-plex-mono)", fontSize: "13px" }}>x402</td>
+                      <td className="whitespace-nowrap" style={{ color: "#9ca3af", fontFamily: "var(--font-outfit)", fontSize: "13px" }}>v2 (CAIP-2)</td>
+                      <td className="whitespace-nowrap" style={{ color: "#6b7280", fontFamily: "var(--font-ibm-plex-mono)", fontSize: "12px" }}>@x402/fetch + @x402/evm</td>
                     </tr>
                     <tr>
-                      <td style={{ color: "#818cf8", fontFamily: "var(--font-ibm-plex-mono)", fontSize: "13px" }}>ERC-8004</td>
-                      <td style={{ color: "#9ca3af", fontFamily: "var(--font-outfit)", fontSize: "13px" }}>draft 2025-08-13</td>
-                      <td style={{ color: "#6b7280", fontFamily: "var(--font-ibm-plex-mono)", fontSize: "12px" }}>@agent-stack/identity</td>
+                      <td className="whitespace-nowrap" style={{ color: "#818cf8", fontFamily: "var(--font-ibm-plex-mono)", fontSize: "13px" }}>ERC-8004</td>
+                      <td className="whitespace-nowrap" style={{ color: "#9ca3af", fontFamily: "var(--font-outfit)", fontSize: "13px" }}>draft 2025-08-13</td>
+                      <td className="whitespace-nowrap" style={{ color: "#6b7280", fontFamily: "var(--font-ibm-plex-mono)", fontSize: "12px" }}>@agent-stack/identity</td>
                     </tr>
                     <tr>
-                      <td style={{ color: "#38bdf8", fontFamily: "var(--font-ibm-plex-mono)", fontSize: "13px" }}>MCP</td>
-                      <td style={{ color: "#9ca3af", fontFamily: "var(--font-outfit)", fontSize: "13px" }}>2025-06-18</td>
-                      <td style={{ color: "#6b7280", fontFamily: "var(--font-ibm-plex-mono)", fontSize: "12px" }}>@modelcontextprotocol/sdk</td>
+                      <td className="whitespace-nowrap" style={{ color: "#38bdf8", fontFamily: "var(--font-ibm-plex-mono)", fontSize: "13px" }}>MCP</td>
+                      <td className="whitespace-nowrap" style={{ color: "#9ca3af", fontFamily: "var(--font-outfit)", fontSize: "13px" }}>2025-06-18</td>
+                      <td className="whitespace-nowrap" style={{ color: "#6b7280", fontFamily: "var(--font-ibm-plex-mono)", fontSize: "12px" }}>@modelcontextprotocol/sdk</td>
                     </tr>
                   </tbody>
                 </table>
@@ -1268,13 +1269,13 @@ function Architecture() {
                 Key Addresses (Base Mainnet)
               </h3>
               <div
-                className="rounded-xl overflow-hidden"
+                className="rounded-xl overflow-x-auto"
                 style={{ border: "1px solid rgba(31,41,55,0.8)" }}
               >
                 <table className="proto-table">
                   <thead>
                     <tr>
-                      <th className="text-left">Contract</th>
+                      <th className="text-left whitespace-nowrap">Contract</th>
                       <th className="text-left">Address</th>
                     </tr>
                   </thead>
@@ -1285,8 +1286,8 @@ function Architecture() {
                       { name: "Permit2", addr: "0x000000000022...BA3" },
                     ].map((row) => (
                       <tr key={row.name}>
-                        <td style={{ color: "#9ca3af", fontFamily: "var(--font-outfit)", fontSize: "13px" }}>{row.name}</td>
-                        <td style={{ color: "#6b7280", fontFamily: "var(--font-ibm-plex-mono)", fontSize: "12px" }}>{row.addr}</td>
+                        <td className="whitespace-nowrap" style={{ color: "#9ca3af", fontFamily: "var(--font-outfit)", fontSize: "13px" }}>{row.name}</td>
+                        <td className="whitespace-nowrap" style={{ color: "#6b7280", fontFamily: "var(--font-ibm-plex-mono)", fontSize: "12px" }}>{row.addr}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -1303,13 +1304,13 @@ function Architecture() {
                 Dependency Graph
               </h3>
               <div
-                className="rounded-xl p-4"
+                className="rounded-xl p-3 sm:p-4 overflow-x-auto"
                 style={{ background: "rgba(13,17,23,0.8)", border: "1px solid #1f2937" }}
               >
                 <pre
                   style={{
                     fontFamily: "var(--font-ibm-plex-mono)",
-                    fontSize: "12px",
+                    fontSize: "11px",
                     lineHeight: 1.7,
                     color: "#6b7280",
                     margin: 0,
@@ -1377,9 +1378,9 @@ function Footer() {
   return (
     <footer
       id="built-by"
+      className="pt-12 pb-8 sm:pt-16 sm:pb-10"
       style={{
         borderTop: "1px solid rgba(31,41,55,0.6)",
-        padding: "64px 0 40px",
       }}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6">

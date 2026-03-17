@@ -263,6 +263,26 @@ code, pre, .font-mono {
   font-family: var(--font-ibm-plex-mono), monospace;
 }
 
+/* ─── Mobile responsive ─── */
+@media (max-width: 639px) {
+  .code-block pre {
+    padding: 0.75rem 0.75rem !important;
+    font-size: 11px !important;
+    line-height: 1.5 !important;
+  }
+  .code-block .flex.items-center.justify-between {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+  .proto-table th {
+    padding: 8px 10px;
+    font-size: 10px;
+  }
+  .proto-table td {
+    padding: 8px 10px;
+  }
+}
+
 /* ─── Mobile menu ─── */
 .mobile-menu {
   transition: opacity 0.2s ease, transform 0.2s ease;
