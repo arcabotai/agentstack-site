@@ -282,32 +282,30 @@ function Navbar() {
           </button>
         </div>
 
-        {/* Mobile menu button */}
+        {/* Mobile menu button — 44px touch target */}
         <button
-          className="md:hidden p-2 rounded-md"
-          style={{ color: "#9ca3af" }}
+          className="md:hidden flex items-center justify-center rounded-md"
+          style={{ color: "#9ca3af", width: "44px", height: "44px" }}
           onClick={() => setMenuOpen(!menuOpen)}
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
         >
-          <div className="w-5 h-4 flex flex-col justify-between">
+          <div className="w-5 flex flex-col gap-[5px]">
             <span
-              className="block w-full h-0.5 rounded transition-all"
+              className="hamburger-bar"
               style={{
-                background: "#9ca3af",
-                transform: menuOpen ? "rotate(45deg) translate(5px, 5px)" : "",
+                transform: menuOpen ? "translateY(7px) rotate(45deg)" : "",
               }}
             />
             <span
-              className="block w-full h-0.5 rounded transition-all"
+              className="hamburger-bar"
               style={{
-                background: "#9ca3af",
                 opacity: menuOpen ? 0 : 1,
               }}
             />
             <span
-              className="block w-full h-0.5 rounded transition-all"
+              className="hamburger-bar"
               style={{
-                background: "#9ca3af",
-                transform: menuOpen ? "rotate(-45deg) translate(5px, -5px)" : "",
+                transform: menuOpen ? "translateY(-7px) rotate(-45deg)" : "",
               }}
             />
           </div>
@@ -321,36 +319,44 @@ function Navbar() {
           style={{
             background: "rgba(6,9,15,0.98)",
             borderBottom: "1px solid rgba(31,41,55,0.8)",
-            padding: "12px 0",
+            padding: "8px 0 12px",
           }}
         >
           {links.map((link) => (
             <button
               key={link.id}
               onClick={() => scrollTo(link.id)}
-              className="block w-full text-left px-6 py-3 text-sm"
-              style={{ color: "#9ca3af", fontFamily: "var(--font-outfit)" }}
+              className="block w-full text-left px-6 text-sm"
+              style={{
+                color: "#9ca3af",
+                fontFamily: "var(--font-outfit)",
+                minHeight: "44px",
+                lineHeight: "44px",
+              }}
             >
               {link.label}
             </button>
           ))}
-          <div className="px-4 pt-2 pb-1 flex gap-2">
+          <div className="px-4 pt-3 pb-1 flex gap-3">
             <a
               href="https://github.com/arcabotai/agent-stack"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex-1 text-center py-2 rounded-md text-sm"
+              className="flex-1 flex items-center justify-center gap-2 rounded-lg text-sm"
               style={{
                 color: "#9ca3af",
                 border: "1px solid rgba(31,41,55,0.8)",
                 fontFamily: "var(--font-outfit)",
+                minHeight: "44px",
               }}
             >
+              <GitHubIcon size={16} />
               GitHub
             </a>
             <button
               onClick={() => scrollTo("quick-start")}
-              className="btn-gold flex-1 py-2 rounded-md text-sm"
+              className="btn-gold flex-1 rounded-lg text-sm font-semibold"
+              style={{ minHeight: "44px" }}
             >
               Get Started
             </button>
@@ -394,8 +400,8 @@ function TwitterXIcon({ size = 20 }: { size?: number }) {
 function Hero() {
   return (
     <section
-      className="relative min-h-screen flex flex-col items-center justify-center hero-gradient grid-pattern"
-      style={{ paddingTop: "96px", paddingBottom: "80px" }}
+      className="relative min-h-screen flex flex-col items-center justify-center hero-gradient grid-pattern px-4 sm:px-0"
+      style={{ paddingTop: "80px", paddingBottom: "60px" }}
     >
       {/* Radial overlay to fade grid near center */}
       <div
@@ -635,7 +641,7 @@ function HowItWorks() {
           >
             How It Works
           </h2>
-          <p className="text-lg max-w-xl mx-auto" style={{ color: "#6b7280", fontFamily: "var(--font-outfit)" }}>
+          <p className="text-sm sm:text-lg max-w-xl mx-auto px-2" style={{ color: "#6b7280", fontFamily: "var(--font-outfit)" }}>
             Three protocols. One SDK. Agents that identify, charge, and serve each other
             — no middlemen, no API keys.
           </p>
@@ -647,9 +653,9 @@ function HowItWorks() {
             <div key={step.number} className={`reveal reveal-delay-${i + 1}`}>
               <div className="flex gap-3 sm:gap-6">
                 {/* Left: number + connector */}
-                <div className="flex flex-col items-center flex-shrink-0" style={{ minWidth: "40px" }}>
+                <div className="flex flex-col items-center flex-shrink-0" style={{ minWidth: "36px" }}>
                   <div
-                    className="w-12 h-12 rounded-xl flex items-center justify-center text-xl font-bold flex-shrink-0"
+                    className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center text-lg sm:text-xl font-bold flex-shrink-0"
                     style={{
                       background: `linear-gradient(135deg, ${step.color}20, ${step.color}10)`,
                       border: `1px solid ${step.color}40`,
@@ -685,8 +691,8 @@ function HowItWorks() {
                     </h3>
                   </div>
                   <p
-                    className="mb-3 leading-relaxed"
-                    style={{ color: "#6b7280", fontFamily: "var(--font-outfit)", fontSize: "15px" }}
+                    className="mb-3 leading-relaxed text-xs sm:text-[15px]"
+                    style={{ color: "#6b7280", fontFamily: "var(--font-outfit)" }}
                   >
                     {step.description}
                   </p>
@@ -713,7 +719,8 @@ function HowItWorks() {
           <div
             className="glass-card rounded-2xl p-6 sm:p-8 max-w-4xl mx-auto"
           >
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
+            {/* Mobile: horizontal scrollable row. Desktop: flex row with arrows */}
+            <div className="flex flex-row items-center justify-start sm:justify-center gap-4 sm:gap-4 overflow-x-auto sm:overflow-x-visible pb-2 sm:pb-0 -mx-2 px-2 sm:mx-0 sm:px-0">
               {[
                 { label: "Lookup", sub: "ERC-8004 registry", icon: "🔍" },
                 { label: "Fetch", sub: "Registration file", icon: "📄" },
@@ -721,10 +728,10 @@ function HowItWorks() {
                 { label: "Pay", sub: "x402 USDC", icon: "💳" },
                 { label: "Process", sub: "Tool result", icon: "✅" },
               ].map((node, i) => (
-                <div key={node.label} className="flex items-center gap-3 sm:gap-4">
-                  <div className="flex flex-col items-center text-center">
+                <div key={node.label} className="flex items-center gap-3 sm:gap-4 flex-shrink-0">
+                  <div className="flex flex-col items-center text-center" style={{ minWidth: "56px" }}>
                     <div
-                      className="w-12 h-12 rounded-xl flex items-center justify-center text-xl mb-2"
+                      className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center text-lg sm:text-xl mb-1.5"
                       style={{
                         background: "rgba(31,41,55,0.8)",
                         border: "1px solid rgba(251,191,36,0.15)",
@@ -733,21 +740,21 @@ function HowItWorks() {
                       {node.icon}
                     </div>
                     <span
-                      className="text-sm font-medium block"
+                      className="text-xs sm:text-sm font-medium block"
                       style={{ color: "#e5e7eb", fontFamily: "var(--font-sora)" }}
                     >
                       {node.label}
                     </span>
-                    <span className="text-xs block mt-0.5" style={{ color: "#4b5563" }}>
+                    <span className="text-[10px] sm:text-xs block mt-0.5" style={{ color: "#4b5563" }}>
                       {node.sub}
                     </span>
                   </div>
                   {i < 4 && (
                     <svg
-                      width="24"
+                      width="20"
                       height="12"
                       viewBox="0 0 24 12"
-                      className="hidden sm:block flex-shrink-0"
+                      className="flex-shrink-0 opacity-40 sm:opacity-100"
                       fill="none"
                     >
                       <path
@@ -872,7 +879,7 @@ await agent.start(); // MCP at :3000, x402 enabled`,
           >
             Four Packages. One Stack.
           </h2>
-          <p className="text-lg max-w-xl mx-auto" style={{ color: "#6b7280", fontFamily: "var(--font-outfit)" }}>
+          <p className="text-sm sm:text-lg max-w-xl mx-auto px-2" style={{ color: "#6b7280", fontFamily: "var(--font-outfit)" }}>
             Use each package standalone or combine them via{" "}
             <code
               className="text-sm px-1.5 py-0.5 rounded"
@@ -898,12 +905,12 @@ await agent.start(); // MCP at :3000, x402 enabled`,
             >
               {/* Card header */}
               <div
-                className="p-6 pb-4"
+                className="p-4 sm:p-6 pb-4"
                 style={{ borderBottom: "1px solid rgba(31,41,55,0.8)" }}
               >
-                <div className="flex items-start gap-4">
+                <div className="flex items-start gap-3 sm:gap-4">
                   <div
-                    className="w-11 h-11 rounded-xl flex items-center justify-center text-xl flex-shrink-0"
+                    className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl flex items-center justify-center text-lg sm:text-xl flex-shrink-0"
                     style={{
                       background: `${pkg.color}15`,
                       border: `1px solid ${pkg.color}30`,
@@ -913,13 +920,13 @@ await agent.start(); // MCP at :3000, x402 enabled`,
                   </div>
                   <div className="min-w-0">
                     <div
-                      className="font-mono text-sm mb-1"
+                      className="font-mono text-xs sm:text-sm mb-1 truncate"
                       style={{ color: pkg.color, fontFamily: "var(--font-ibm-plex-mono)" }}
                     >
                       {pkg.name}
                     </div>
                     <div
-                      className="font-semibold"
+                      className="font-semibold text-sm sm:text-base"
                       style={{ fontFamily: "var(--font-sora)", color: "#f3f4f6" }}
                     >
                       {pkg.tagline}
@@ -928,17 +935,17 @@ await agent.start(); // MCP at :3000, x402 enabled`,
                 </div>
 
                 <p
-                  className="mt-3 text-sm leading-relaxed"
+                  className="mt-3 text-xs sm:text-sm leading-relaxed"
                   style={{ color: "#6b7280", fontFamily: "var(--font-outfit)" }}
                 >
                   {pkg.description}
                 </p>
 
-                <div className="flex flex-wrap gap-2 mt-3">
+                <div className="flex flex-wrap gap-1.5 sm:gap-2 mt-3">
                   {pkg.features.map((f) => (
                     <span
                       key={f}
-                      className="text-xs px-2.5 py-1 rounded-full"
+                      className="text-[10px] sm:text-xs px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full"
                       style={{
                         background: `${pkg.color}10`,
                         border: `1px solid ${pkg.color}25`,
@@ -1040,7 +1047,7 @@ function QuickStart() {
           >
             Quick Start
           </h2>
-          <p className="text-lg max-w-xl mx-auto" style={{ color: "#6b7280", fontFamily: "var(--font-outfit)" }}>
+          <p className="text-sm sm:text-lg max-w-xl mx-auto px-2" style={{ color: "#6b7280", fontFamily: "var(--font-outfit)" }}>
             A paid AI agent server in 15 lines. A client that pays automatically in 10.
           </p>
         </div>
@@ -1048,18 +1055,20 @@ function QuickStart() {
         {/* Install */}
         <div className="max-w-2xl mx-auto mb-8 reveal">
           <div
-            className="rounded-xl p-3 sm:p-4 overflow-x-auto"
+            className="rounded-xl p-3 sm:p-4"
             style={{ background: "rgba(13,17,23,0.8)", border: "1px solid #1f2937" }}
           >
             <div className="text-xs mb-2" style={{ color: "#4b5563", fontFamily: "var(--font-outfit)" }}>
               Install
             </div>
-            <div className="whitespace-nowrap" style={{ fontFamily: "var(--font-ibm-plex-mono)", fontSize: "12px" }}>
-              <span style={{ color: "#6b7280" }}>$ </span>
-              <span style={{ color: "#c3e88d" }}>npm install </span>
-              <span style={{ color: "#89ddff" }}>
-                @agent-stack/core viem @x402/fetch @x402/evm @modelcontextprotocol/sdk zod
-              </span>
+            <div className="install-scroll" style={{ fontFamily: "var(--font-ibm-plex-mono)", fontSize: "12px" }}>
+              <div className="whitespace-nowrap">
+                <span style={{ color: "#6b7280" }}>$ </span>
+                <span style={{ color: "#c3e88d" }}>npm install </span>
+                <span style={{ color: "#89ddff" }}>
+                  @agent-stack/core viem @x402/fetch @x402/evm @modelcontextprotocol/sdk zod
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -1068,28 +1077,30 @@ function QuickStart() {
         <div className="max-w-3xl mx-auto reveal">
           {/* Tab bar */}
           <div
-            className="flex gap-1 p-1 rounded-xl mb-3 w-full sm:w-fit overflow-x-auto"
+            className="flex gap-1 p-1 rounded-xl mb-3 w-full sm:w-fit"
             style={{ background: "rgba(17,24,39,0.8)", border: "1px solid #1f2937" }}
           >
             {(
               [
-                { id: "server", label: "Server (Agent A)" },
-                { id: "client", label: "Client (Agent B)" },
-                { id: "register", label: "Register on-chain" },
+                { id: "server", label: "Server", labelDesktop: "Server (Agent A)" },
+                { id: "client", label: "Client", labelDesktop: "Client (Agent B)" },
+                { id: "register", label: "Register", labelDesktop: "Register on-chain" },
               ] as const
             ).map((t) => (
               <button
                 key={t.id}
                 onClick={() => setTab(t.id)}
-                className="px-2.5 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-medium transition-all whitespace-nowrap"
+                className="flex-1 sm:flex-none px-2.5 sm:px-4 rounded-lg text-xs sm:text-sm font-medium transition-all whitespace-nowrap"
                 style={{
                   background: tab === t.id ? "rgba(251,191,36,0.12)" : "transparent",
                   color: tab === t.id ? "#fbbf24" : "#6b7280",
                   border: tab === t.id ? "1px solid rgba(251,191,36,0.25)" : "1px solid transparent",
                   fontFamily: "var(--font-outfit)",
+                  minHeight: "40px",
                 }}
               >
-                {t.label}
+                <span className="sm:hidden">{t.label}</span>
+                <span className="hidden sm:inline">{t.labelDesktop}</span>
               </button>
             ))}
           </div>
@@ -1141,7 +1152,7 @@ function Architecture() {
           >
             Architecture
           </h2>
-          <p className="text-lg max-w-xl mx-auto" style={{ color: "#6b7280", fontFamily: "var(--font-outfit)" }}>
+          <p className="text-sm sm:text-lg max-w-xl mx-auto px-2" style={{ color: "#6b7280", fontFamily: "var(--font-outfit)" }}>
             Under the hood: how agents find each other, verify identity, and settle payments.
           </p>
         </div>
@@ -1185,7 +1196,7 @@ function Architecture() {
               ].map((item) => (
                 <div
                   key={item.step}
-                  className="flex gap-4 p-4 rounded-xl"
+                  className="flex gap-3 sm:gap-4 p-3 sm:p-4 rounded-xl"
                   style={{ background: "rgba(17,24,39,0.6)", border: "1px solid rgba(31,41,55,0.6)" }}
                 >
                   <div
@@ -1198,7 +1209,7 @@ function Architecture() {
                   >
                     {item.step}
                   </div>
-                  <div>
+                  <div className="min-w-0">
                     <div
                       className="text-sm font-semibold mb-1"
                       style={{ color: "#e5e7eb", fontFamily: "var(--font-sora)" }}
@@ -1206,7 +1217,7 @@ function Architecture() {
                       {item.title}
                     </div>
                     <div
-                      className="text-sm"
+                      className="text-xs sm:text-sm"
                       style={{ color: "#6b7280", fontFamily: "var(--font-outfit)", lineHeight: 1.5 }}
                     >
                       {item.desc}
@@ -1243,17 +1254,17 @@ function Architecture() {
                     <tr>
                       <td className="whitespace-nowrap" style={{ color: "#34d399", fontFamily: "var(--font-ibm-plex-mono)", fontSize: "13px" }}>x402</td>
                       <td className="whitespace-nowrap" style={{ color: "#9ca3af", fontFamily: "var(--font-outfit)", fontSize: "13px" }}>v2 (CAIP-2)</td>
-                      <td className="whitespace-nowrap" style={{ color: "#6b7280", fontFamily: "var(--font-ibm-plex-mono)", fontSize: "12px" }}>@x402/fetch + @x402/evm</td>
+                      <td style={{ color: "#6b7280", fontFamily: "var(--font-ibm-plex-mono)", fontSize: "11px" }}>@x402/fetch + @x402/evm</td>
                     </tr>
                     <tr>
                       <td className="whitespace-nowrap" style={{ color: "#818cf8", fontFamily: "var(--font-ibm-plex-mono)", fontSize: "13px" }}>ERC-8004</td>
                       <td className="whitespace-nowrap" style={{ color: "#9ca3af", fontFamily: "var(--font-outfit)", fontSize: "13px" }}>draft 2025-08-13</td>
-                      <td className="whitespace-nowrap" style={{ color: "#6b7280", fontFamily: "var(--font-ibm-plex-mono)", fontSize: "12px" }}>@agent-stack/identity</td>
+                      <td style={{ color: "#6b7280", fontFamily: "var(--font-ibm-plex-mono)", fontSize: "11px" }}>@agent-stack/identity</td>
                     </tr>
                     <tr>
                       <td className="whitespace-nowrap" style={{ color: "#38bdf8", fontFamily: "var(--font-ibm-plex-mono)", fontSize: "13px" }}>MCP</td>
                       <td className="whitespace-nowrap" style={{ color: "#9ca3af", fontFamily: "var(--font-outfit)", fontSize: "13px" }}>2025-06-18</td>
-                      <td className="whitespace-nowrap" style={{ color: "#6b7280", fontFamily: "var(--font-ibm-plex-mono)", fontSize: "12px" }}>@modelcontextprotocol/sdk</td>
+                      <td style={{ color: "#6b7280", fontFamily: "var(--font-ibm-plex-mono)", fontSize: "11px" }}>@modelcontextprotocol/sdk</td>
                     </tr>
                   </tbody>
                 </table>
@@ -1304,7 +1315,7 @@ function Architecture() {
                 Dependency Graph
               </h3>
               <div
-                className="rounded-xl p-3 sm:p-4 overflow-x-auto"
+                className="rounded-xl p-3 sm:p-4 install-scroll"
                 style={{ background: "rgba(13,17,23,0.8)", border: "1px solid #1f2937" }}
               >
                 <pre
@@ -1314,6 +1325,7 @@ function Architecture() {
                     lineHeight: 1.7,
                     color: "#6b7280",
                     margin: 0,
+                    whiteSpace: "pre",
                   }}
                 >
                   {`@agent-stack/core
@@ -1420,7 +1432,7 @@ function Footer() {
         </div>
 
         {/* Links */}
-        <div className="flex flex-wrap justify-center gap-4 mb-12 reveal">
+        <div className="grid grid-cols-2 sm:flex sm:flex-wrap sm:justify-center gap-3 sm:gap-4 mb-12 reveal">
           {[
             { href: "https://github.com/arcabotai/agent-stack", label: "GitHub", icon: <GitHubIcon size={18} /> },
             { href: "https://warpcast.com/arcabot.eth", label: "Farcaster", icon: <FarcasterIcon size={18} /> },
@@ -1439,12 +1451,13 @@ function Footer() {
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 px-4 py-2.5 rounded-xl transition-all"
+              className="flex items-center justify-center gap-2 px-4 rounded-xl transition-all"
               style={{
                 color: "#6b7280",
                 border: "1px solid rgba(31,41,55,0.8)",
                 fontFamily: "var(--font-outfit)",
                 fontSize: "14px",
+                minHeight: "44px",
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.color = "#e5e7eb";
@@ -1473,7 +1486,7 @@ function Footer() {
             style={{ fontFamily: "var(--font-outfit)", fontSize: "13px", color: "#374151" }}
           >
             <div
-              className="w-6 h-6 rounded-md flex items-center justify-center"
+              className="w-6 h-6 rounded-md flex items-center justify-center flex-shrink-0"
               style={{ background: "rgba(251,191,36,0.1)", border: "1px solid rgba(251,191,36,0.2)" }}
             >
               <svg width="12" height="12" viewBox="0 0 18 18" fill="none">
@@ -1486,11 +1499,11 @@ function Footer() {
           </div>
 
           <div
-            className="flex items-center gap-4"
+            className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1"
             style={{ fontFamily: "var(--font-outfit)", fontSize: "12px", color: "#374151" }}
           >
             <span>MIT License</span>
-            <span>·</span>
+            <span className="hidden sm:inline">·</span>
             <a
               href="mailto:arca@arcabot.ai"
               style={{ color: "#4b5563" }}
@@ -1499,7 +1512,7 @@ function Footer() {
             >
               arca@arcabot.ai
             </a>
-            <span>·</span>
+            <span className="hidden sm:inline">·</span>
             <span>© 2025 arcabot.ai</span>
           </div>
         </div>
