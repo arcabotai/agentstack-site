@@ -21,6 +21,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
@@ -29,6 +30,11 @@ body {
   font-family: var(--font-outfit), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+html {
   overflow-x: hidden;
 }
 
@@ -265,22 +271,47 @@ code, pre, .font-mono {
 
 /* ─── Mobile responsive ─── */
 @media (max-width: 639px) {
+  .code-block {
+    border-radius: 8px;
+    font-size: 11px;
+    max-width: 100%;
+  }
   .code-block pre {
-    padding: 0.75rem 0.75rem !important;
-    font-size: 11px !important;
-    line-height: 1.5 !important;
+    padding: 0.75rem !important;
+    font-size: 10.5px !important;
+    line-height: 1.4 !important;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    word-break: break-all;
+    white-space: pre-wrap;
   }
   .code-block .flex.items-center.justify-between {
     padding-left: 0.75rem;
     padding-right: 0.75rem;
   }
+  .proto-table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
   .proto-table th {
     padding: 8px 10px;
     font-size: 10px;
+    white-space: nowrap;
   }
   .proto-table td {
     padding: 8px 10px;
+    font-size: 13px;
   }
+  /* Force all sections to not overflow */
+  section, .glass-card {
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+  /* Smaller headings on mobile */
+  h1 { font-size: 1.75rem !important; line-height: 1.2 !important; }
+  h2 { font-size: 1.375rem !important; line-height: 1.25 !important; }
+  h3 { font-size: 1.125rem !important; }
 }
 
 /* ─── Mobile menu ─── */

@@ -432,7 +432,7 @@ function Hero() {
 
         {/* Heading */}
         <h1
-          className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-4 animate-fade-up"
+          className="text-3xl sm:text-5xl lg:text-7xl font-bold mb-4 animate-fade-up"
           style={{
             fontFamily: "var(--font-sora)",
             letterSpacing: "-0.02em",
@@ -448,7 +448,7 @@ function Hero() {
 
         {/* Tagline */}
         <p
-          className="text-xl sm:text-2xl font-medium mb-6 animate-fade-up"
+          className="text-base sm:text-xl lg:text-2xl font-medium mb-6 animate-fade-up"
           style={{
             fontFamily: "var(--font-sora)",
             animationDelay: "0.25s",
@@ -464,7 +464,7 @@ function Hero() {
 
         {/* Description */}
         <p
-          className="text-lg max-w-2xl mx-auto mb-10 animate-fade-up"
+          className="text-sm sm:text-lg max-w-2xl mx-auto mb-10 animate-fade-up px-2"
           style={{
             color: "#6b7280",
             fontFamily: "var(--font-outfit)",
@@ -630,7 +630,7 @@ function HowItWorks() {
             The Protocol
           </span>
           <h2
-            className="text-3xl sm:text-4xl font-bold mb-4"
+            className="text-xl sm:text-3xl lg:text-4xl font-bold mb-4"
             style={{ fontFamily: "var(--font-sora)", color: "#f3f4f6" }}
           >
             How It Works
@@ -867,7 +867,7 @@ await agent.start(); // MCP at :3000, x402 enabled`,
             Modular by Design
           </span>
           <h2
-            className="text-3xl sm:text-4xl font-bold mb-4"
+            className="text-xl sm:text-3xl lg:text-4xl font-bold mb-4"
             style={{ fontFamily: "var(--font-sora)", color: "#f3f4f6" }}
           >
             Four Packages. One Stack.
@@ -1035,7 +1035,7 @@ function QuickStart() {
             Get Going Fast
           </span>
           <h2
-            className="text-3xl sm:text-4xl font-bold mb-4"
+            className="text-xl sm:text-3xl lg:text-4xl font-bold mb-4"
             style={{ fontFamily: "var(--font-sora)", color: "#f3f4f6" }}
           >
             Quick Start
@@ -1136,7 +1136,7 @@ function Architecture() {
             For Builders
           </span>
           <h2
-            className="text-3xl sm:text-4xl font-bold mb-4"
+            className="text-xl sm:text-3xl lg:text-4xl font-bold mb-4"
             style={{ fontFamily: "var(--font-sora)", color: "#f3f4f6" }}
           >
             Architecture
